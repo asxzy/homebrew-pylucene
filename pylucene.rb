@@ -11,6 +11,8 @@ class Pylucene < Formula
   depends_on :java => "1.7"
   depends_on :python
 
+  patch :DATA
+
   def install
     ENV.prepend_create_path "PYTHONPATH", lib/"python2.7/site-packages"
     jcc = "JCC=python -m jcc --arch #{MacOS.preferred_arch}"
@@ -35,3 +37,27 @@ class Pylucene < Formula
     system "python", "-c", "import lucene; assert lucene.initVM()"
   end
 end
+
+
+__END__
+diff --git a/Makefile b/Makefile2
+index ba74495..42d15c4 100644
+--- a/Makefile
++++ b/Makefile2
+@@ -155,7 +155,7 @@ JARS+=$(EXTENSIONS_JAR)         # needs highlighter contrib
+ JARS+=$(QUERIES_JAR)            # regex and other contrib queries
+ JARS+=$(QUERYPARSER_JAR)        # query parser
+ JARS+=$(SANDBOX_JAR)            # needed by query parser
+-#JARS+=$(SMARTCN_JAR)            # smart chinese analyzer
++JARS+=$(SMARTCN_JAR)            # smart chinese analyzer
+ JARS+=$(STEMPEL_JAR)            # polish analyzer and stemmer
+ #JARS+=$(SPATIAL_JAR)            # spatial lucene
+ JARS+=$(GROUPING_JAR)           # grouping module
+@@ -342,6 +342,7 @@ GENERATE=$(JCC) $(foreach jar,$(JARS),--jar $(jar)) \
+                              java.io.FileInputStream \
+                              java.io.DataInputStream \
+            --exclude org.apache.lucene.sandbox.queries.regex.JakartaRegexpCapabilities \
++                  --exclude org.apache.lucene.analysis.cn.smart.AnalyzerProfile\
+            --exclude org.apache.regexp.RegexpTunnel \
+            --python lucene \
+            --mapping org.apache.lucene.document.Document 'get:(Ljava/lang/String;)Ljava/lang/String;' \
