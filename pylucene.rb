@@ -1,6 +1,6 @@
 require "formula"
 
-class Pylucene < Formula
+class Pylucene-cn < Formula
   homepage "http://lucene.apache.org/pylucene/index.html"
   url "http://www.apache.org/dyn/closer.cgi?path=lucene/pylucene/pylucene-4.9.0-0-src.tar.gz"
   sha1 "859613e405d266eaadc2f045e9200bc2d8765eb8"
