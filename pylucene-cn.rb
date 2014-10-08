@@ -1,6 +1,6 @@
 require "formula"
 
-class Pylucene < Formula
+class PyluceneCn < Formula
   homepage "http://lucene.apache.org/pylucene/index.html"
   url "http://www.apache.org/dyn/closer.cgi?path=lucene/pylucene/pylucene-4.9.0-0-src.tar.gz"
   sha1 "859613e405d266eaadc2f045e9200bc2d8765eb8"
@@ -40,10 +40,10 @@ end
 
 
 __END__
-diff --git a/Makefile b/Makefile2
+diff --git a/Makefile b/Makefile
 index ba74495..42d15c4 100644
 --- a/Makefile
-+++ b/Makefile2
++++ b/Makefile
 @@ -155,7 +155,7 @@ JARS+=$(EXTENSIONS_JAR)         # needs highlighter contrib
  JARS+=$(QUERIES_JAR)            # regex and other contrib queries
  JARS+=$(QUERYPARSER_JAR)        # query parser
